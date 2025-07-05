@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wine Quality Predictor</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: auto; padding: 30px; }
+        label, input { display: block; margin-bottom: 10px; }
+        .btn { padding: 10px 15px; background-color: #6200ea; color: white; border: none; cursor: pointer; }
+        .result { margin-top: 20px; font-size: 18px; color: green; }
+    </style>
+</head>
+<body>
+    <h2>🍷 Wine Quality Prediction</h2>
+    <form method="POST" action="/predict">
+        {% for feature in feature_names %}
+            <label>{{ feature.title() }}</label>
+            <input type="number" name="{{ feature }}" step="any" required>
+        {% endfor %}
+        <button class="btn" type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+</body>
+</html>
